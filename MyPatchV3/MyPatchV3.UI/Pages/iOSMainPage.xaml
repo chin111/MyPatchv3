@@ -1,0 +1,5 @@
+﻿<TabbedPage  xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ctr="clr-namespace:MyPatchV3.UI.Pages;assembly=MyPatchV3.UI"
+             x:Class="MyPatchV3.UI.Pages.iOSMainPage">
+</TabbedPage>

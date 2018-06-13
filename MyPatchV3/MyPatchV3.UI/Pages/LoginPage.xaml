@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:MyPatchV3.UI.Behaviors;assembly=MyPatchV3.UI"
+             xmlns:effects="clr-namespace:MyPatchV3.UI.Effects;assembly=MyPatchV3.UI"
+             xmlns:helpers="clr-namespace:MyPatchV3.UI.Helpers;assembly=MyPatchV3.UI"
+             x:Class="MyPatchV3.UI.Pages.LoginPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="SignInButtonStyle"
+                   TargetType="{x:Type Button}"
+                   BasedOn="{StaticResource ButtonStyle}">
+                <Setter Property="HeightRequest"
+                        Value="48" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource MediumSize}" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid 
+            BackgroundColor="{StaticResource BlueColor}"
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand">
+            <Grid
+                >
+                <Grid.Padding>
+                    <OnPlatform 
+                        x:TypeArguments="Thickness"
+                        iOS="40, 20, 40, 30"
+                        Android="40, 20, 40, 30"/>
+                </Grid.Padding>
+                <Grid.VerticalOptions>
+                    <OnPlatform x:TypeArguments="LayoutOptions"
+                        Android="Center"
+                        iOS="Center"/>
+                </Grid.VerticalOptions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition>
+                        <RowDefinition.Height>
+                            <OnPlatform 
+                                x:TypeArguments="GridLength"
+                                iOS="40"
+                                Android="20"/>
+                        </RowDefinition.Height>
+                    </RowDefinition>
+                </Grid.RowDefinitions>
+                <StackLayout Grid.Row="0">
+                    <StackLayout.Spacing>
+                        <OnPlatform 
+                            x:TypeArguments="x:Double" 
+                            iOS="20"/>
+                    </StackLayout.Spacing>
+                    <StackLayout.HorizontalOptions>
+                        <OnPlatform 
+                            x:TypeArguments="LayoutOptions"
+                            iOS="FillAndExpand"
+                            Android="FillAndExpand"/>
+                    </StackLayout.HorizontalOptions>
+                    <Entry
+                        x:Name="EntryUserName"
+                        Text="{Binding UserName.Value, Mode=TwoWay}"
+                        AutomationId="username"
+                        Placeholder="Username">
+                        <Entry.Style>
+                            <OnPlatform x:TypeArguments="Style"
+                                iOS="{StaticResource EntryStyle}"
+                                Android="{StaticResource EntryStyle}"/>
+                        </Entry.Style>
+                        <Entry.Behaviors>
+                            <behaviors:TurnValidOnFocusBehavior ValidityObject="{Binding UserName}" />
+                            <behaviors:ValidateOnTextChangedBehavior ValidateCommand="{Binding ValidateCommand}"/>
+                        </Entry.Behaviors>
+                        <Entry.Triggers>
+                            <DataTrigger TargetType="Entry" 
+                                Binding="{Binding UserName.IsValid}" 
+                                Value="False">
+                                    <Setter Property="effects:LineColorEffect.LineColor" Value="{StaticResource ErrorColor}" />
+                            </DataTrigger>
+                        </Entry.Triggers>
+                        <Entry.HeightRequest>
+                            <OnPlatform 
+                                x:TypeArguments="x:Double"
+                                iOS="56"
+                                Android="56"/>
+                        </Entry.HeightRequest>
+                    </Entry>
+                    <Entry 
+                        x:Name="EntryPassword"
+                        Text="{Binding Password.Value, Mode=TwoWay}"
+                        Placeholder="Password"
+                        AutomationId="password"
+                        IsPassword="true">
+                        <Entry.Style>
+                            <OnPlatform 
+                                x:TypeArguments="Style"
+                                iOS="{StaticResource EntryStyle}"
+                                Android="{StaticResource EntryStyle}"/>
+                        </Entry.Style>
+                        <Entry.Behaviors>
+                            <behaviors:TurnValidOnFocusBehavior ValidityObject="{Binding Password}" />
+                            <behaviors:ValidateOnTextChangedBehavior ValidateCommand="{Binding ValidateCommand}"/>
+                        </Entry.Behaviors>
+                        <Entry.Triggers>
+                            <DataTrigger 
+                                TargetType="Entry"
+                                Binding="{Binding Password.IsValid}"
+                                Value="False">
+                                <Setter Property="effects:LineColorEffect.LineColor" Value="{StaticResource ErrorColor}" />
+                            </DataTrigger>
+                        </Entry.Triggers>
+                        <Entry.HeightRequest>
+                            <OnPlatform 
+                                x:TypeArguments="x:Double"
+                                iOS="56"
+                                Android="56"/>
+                        </Entry.HeightRequest>
+                    </Entry>
+                    <Button x:Name="SignInButton"
+                        Command="{Binding SignInCommand}"
+                        Text="Log In"
+                        AutomationId="signin"
+                        Style="{StaticResource SignInButtonStyle}">
+                        <Button.IsVisible>
+                            <helpers:OnCustomPlatform x:TypeArguments="x:Boolean"
+                                            Android="True"
+                                            iOS="True"/>
+                        </Button.IsVisible>
+                        <Button.Margin>
+                            <OnPlatform 
+                                x:TypeArguments="Thickness"
+                                iOS="0, 20, 0, 0"
+                                Android="0, 16, 0, 0"/>
+                        </Button.Margin>
+                        
+                    </Button>
+                </StackLayout>
+            </Grid>
+            <ActivityIndicator 
+                Color="{StaticResource WhiteColor}"
+                IsRunning="{Binding IsBusy}" 
+                IsVisible="{Binding IsBusy}"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="0, 150, 0, 0">
+                <ActivityIndicator.WidthRequest>
+                    <OnPlatform 
+                        x:TypeArguments="x:Double" 
+                        iOS="100" 
+                        Android="100"/>
+                </ActivityIndicator.WidthRequest>
+            </ActivityIndicator>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
