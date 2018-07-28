@@ -1,9 +1,8 @@
-﻿//using MyPatchV3.UI.DataServices;
-//using MyPatchV3.UI.DataServices.Base;
-//using MyPatchV3.UI.DataServices.Interfaces;
+﻿using MyPatchV3.UI.DataServices;
+using MyPatchV3.UI.DataServices.Base;
+using MyPatchV3.UI.DataServices.Interfaces;
 using MyPatchV3.UI.Services;
 using MyPatchV3.UI.Services.Interfaces;
-//using MyPatchV3.UI.ViewModels.SignUp;
 using Unity;
 using Unity.Lifetime;
 using System;
@@ -29,8 +28,7 @@ namespace MyPatchV3.UI.ViewModels.Base
             _unityContainer = new UnityContainer();
 
             // Providers
-            //_unityContainer.RegisterType<IRequestProvider, RequestProvider>();
-            //_unityContainer.RegisterType<ILocationProvider, LocationProvider>();
+            _unityContainer.RegisterType<IRequestProvider, RequestProvider>();
             _unityContainer.RegisterType<IMediaPickerService, MediaPickerService>();
 
             // Services
@@ -38,21 +36,17 @@ namespace MyPatchV3.UI.ViewModels.Base
             RegisterSingleton<INavigationService, NavigationService>();
 
             // Data services
-            //_unityContainer.RegisterType<IAuthenticationService, AuthenticationService>();
-            //_unityContainer.RegisterType<IProfileService, ProfileService>();
-            //_unityContainer.RegisterType<IRidesService, RidesService>();
-            //_unityContainer.RegisterType<IEventsService, EventsService>();
-            //_unityContainer.RegisterType<IWeatherService, OpenWeatherMapService>();
-            //_unityContainer.RegisterType<IFeedbackService, FeedbackService>();
+            _unityContainer.RegisterType<IAuthenticationService, AuthenticationService>();
+            _unityContainer.RegisterType<IEmployeeListService, EmployeeListService>();
 
             // View models
             _unityContainer.RegisterType<StartupViewModel>();
             _unityContainer.RegisterType<LoginViewModel>();
+            _unityContainer.RegisterType<EmployeeListViewModel>();
+            _unityContainer.RegisterType<SyncViewModel>();
             _unityContainer.RegisterType<HomeViewModel>();
             _unityContainer.RegisterType<MainViewModel>();
-            //_unityContainer.RegisterType<MenuViewModel>();
-            //_unityContainer.RegisterType<ProfileViewModel>();
-            //_unityContainer.RegisterType<UserViewModel>();
+            _unityContainer.RegisterType<MenuViewModel>();
         }
 
         public T Resolve<T>()

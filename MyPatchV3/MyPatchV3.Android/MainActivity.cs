@@ -7,6 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 
+using UXDivers;
 using Acr.UserDialogs;
 using FFImageLoading.Forms.Droid;
 
@@ -32,6 +33,12 @@ namespace MyPatchV3.Droid
             ViewModelLocator.Instance.Register<IOperatingSystemVersionProvider, OperatingSystemVersionProvider>();
 
             LoadApplication(new App());
+            //LoadApplication(UXDivers.Gorilla.Droid.Player.CreateApplication(
+            //    this,
+            //    new UXDivers.Gorilla.Config("Good Gorilla")
+            //    ));
+
+            Console.Write("Loading passed");
         }
     }
 }

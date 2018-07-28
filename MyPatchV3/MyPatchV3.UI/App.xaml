@@ -11,19 +11,20 @@
         <ResourceDictionary>
 
             <!-- Colors -->
-            <Color x:Key="WhiteColor">#ffffff</Color>
-            <Color x:Key="TransparentWhiteColor">#BFffffff</Color>
-            <Color x:Key="BlueColor">#3063f5</Color>
-            <Color x:Key="TransparentBlueColor">#BF3063f5</Color>
+            <Color x:Key="WhiteColor">#FFFFFF</Color>
+            <Color x:Key="TransparentWhiteColor">#BFFFFFFF</Color>
+            <Color x:Key="BlueColor">#2196F3</Color>
+            <Color x:Key="TransparentBlueColor">#BF2196F3</Color>
             <Color x:Key="BrightYellowColor">#ffed00</Color>
-            <Color x:Key="GrayColor">#484f63</Color>
-            <Color x:Key="ErrorColor">#ff5252</Color>
-            <Color x:Key="BackgroundGrayColor">#f4f6fa</Color>
-            <Color x:Key="ToolbarBlueColor">#3063f5</Color>
-            <Color x:Key="OrangeColor">#ff5e4d</Color>
-            <Color x:Key="ProfileGrayColor">#afb3be</Color>
+            <Color x:Key="GrayColor">#616161</Color>
+            <Color x:Key="ErrorColor">#F44336</Color>
+            <Color x:Key="BackgroundGrayColor">#F4F6Fa</Color>
+            <Color x:Key="ToolbarBlueColor">#2196F3</Color>
+            <Color x:Key="OrangeColor">#FF9800</Color>
+            <Color x:Key="ProfileGrayColor">#9E9E9E</Color>
             <Color x:Key="BlackColor">#000000</Color>
-            <Color x:Key="GreenColor">#0aca91</Color>
+            <Color x:Key="GreenColor">#4CAF50</Color>
+            <Color x:Key="SeparatorColor">#DFDFE3</Color>
 
             <!-- Fonts -->
             <OnPlatform x:Key="MontserratRegular"
@@ -150,6 +151,15 @@
                         <Setter Property="Opacity" Value="1" />
                     </Trigger>
                 </Style.Triggers>
+            </Style>
+
+            <Style x:Key="EmployeeNameLabelStyle"  
+                   TargetType="Label"   
+                   BasedOn="{StaticResource MontserratRegularLabelStyle}">
+                <Setter Property="TextColor"
+                        Value="{StaticResource BlueColor}" />
+                <Setter Property="FontSize" 
+                        Value="{StaticResource MidMediumSize}" />
             </Style>
 
             <Style x:Key="HeaderLabelStyle"

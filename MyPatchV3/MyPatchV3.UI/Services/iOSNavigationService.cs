@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-//using MyPatchV3.UI.DataServices;
+using MyPatchV3.UI.DataServices;
 using MyPatchV3.UI.Pages;
 using MyPatchV3.UI.ViewModels;
 using MyPatchV3.UI.ViewModels.Base;
@@ -13,18 +13,11 @@ namespace MyPatchV3.UI.Services
         private Type _requestedPageType;
         private object _requestedNavigationParameter;
 
-        //public iOSNavigationService(IAuthenticationService authenticationService) : base(authenticationService)
-        //{
-        //    CreatePageViewModelMappings();
-
-        //    MessagingCenter.Subscribe<iOSMainPage>(this, MessengerKeys.iOSMainPageCurrentChanged, OnMainPageCurrentChanged);
-        //}
-
-        public iOSNavigationService() : base()
+        public iOSNavigationService(IAuthenticationService authenticationService) : base(authenticationService)
         {
             CreatePageViewModelMappings();
 
-            //MessagingCenter.Subscribe<iOSMainPage>(this, MessengerKeys.iOSMainPageCurrentChanged, OnMainPageCurrentChanged);
+            MessagingCenter.Subscribe<iOSMainPage>(this, MessengerKeys.iOSMainPageCurrentChanged, OnMainPageCurrentChanged);
         }
 
         public override Task RemoveLastFromBackStackAsync()

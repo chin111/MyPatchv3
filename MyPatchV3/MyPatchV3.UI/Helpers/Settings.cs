@@ -21,23 +21,23 @@ namespace MyPatchV3.UI.Helpers
         #region Setting Constants
 
         private const string UserIdKey = "user_id_key";
-        private static readonly int UserIdDefault = 0;
+        private static readonly string UserIdDefault = string.Empty;
 
-        private const string ProfileIdKey = "profile_id_key";
-        private static readonly int ProfileIdDefault = 0;
+        private const string UserTypeKey = "user_type_key";
+        private static readonly string UserTypeDefault = string.Empty;
+
+        private const string UserActiveKey = "user_active_key";
+        private static readonly int UserActiveDefault = 0;
+
+        private const string UserMsgKey = "user_msg_key";
+        private static readonly string UserMsgDefault = string.Empty;
 
         private const string AccessTokenKey = "access_token_key";
         private static readonly string AccessTokenDefault = string.Empty;
 
-        private const string CurrentBookingIdKey = "current_booking_id";
-        private static readonly int CurrentBookingIdDefault = 0;
-
-        private const string UwpWindowSizeKey = "uwp_window_size";
-        private static readonly string UwpWindowSizeDefault = string.Empty;
-
         #endregion
 
-        public static int UserId
+        public static string UserId
         {
             get
             {
@@ -49,15 +49,39 @@ namespace MyPatchV3.UI.Helpers
             }
         }
 
-        public static int ProfileId
+        public static string UserType
         {
             get
             {
-                return AppSettings.GetValueOrDefault(ProfileIdKey, ProfileIdDefault);
+                return AppSettings.GetValueOrDefault(UserTypeKey, UserTypeDefault);
             }
             set
             {
-                AppSettings.AddOrUpdateValue(ProfileIdKey, value);
+                AppSettings.AddOrUpdateValue(UserTypeKey, value);
+            }
+        }
+
+        public static int UserActive
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(UserActiveKey, UserActiveDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(UserActiveKey, value);
+            }
+        }
+
+        public static string UserMsg
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(UserMsgKey, UserMsgDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(UserMsgKey, value);
             }
         }
 
@@ -73,48 +97,29 @@ namespace MyPatchV3.UI.Helpers
             }
         }
 
-        public static int CurrentBookingId
-        {
-            get
-            {
-                return AppSettings.GetValueOrDefault(CurrentBookingIdKey, CurrentBookingIdDefault);
-            }
-            set
-            {
-                AppSettings.AddOrUpdateValue(CurrentBookingIdKey, value);
-            }
-        }
-
-        public static string UwpWindowSize
-        {
-            get
-            {
-                return AppSettings.GetValueOrDefault(UwpWindowSizeKey, UwpWindowSizeDefault);
-            }
-            set
-            {
-                AppSettings.AddOrUpdateValue(UwpWindowSizeKey, value);
-            }
-        }
-
         public static void RemoveUserId()
         {
             AppSettings.Remove(UserIdKey);
         }
 
-        public static void RemoveProfileId()
+        public static void RemoveUserType()
         {
-            AppSettings.Remove(ProfileIdKey);
+            AppSettings.Remove(UserTypeKey);
+        }
+
+        public static void RemoveUserActive()
+        {
+            AppSettings.Remove(UserActiveKey);
+        }
+
+        public static void RemoveUserMsg()
+        {
+            AppSettings.Remove(UserMsgKey);
         }
 
         public static void RemoveAccessToken()
         {
             AppSettings.Remove(AccessTokenKey);
-        }
-
-        public static void RemoveCurrentBookingId()
-        {
-            AppSettings.Remove(CurrentBookingIdKey);
         }
     }
 }

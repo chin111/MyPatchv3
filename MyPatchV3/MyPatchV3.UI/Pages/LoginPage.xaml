@@ -24,8 +24,7 @@
             BackgroundColor="{StaticResource BlueColor}"
             VerticalOptions="FillAndExpand"
             HorizontalOptions="FillAndExpand">
-            <Grid
-                >
+            <Grid>
                 <Grid.Padding>
                     <OnPlatform 
                         x:TypeArguments="Thickness"
@@ -78,7 +77,7 @@
                             <DataTrigger TargetType="Entry" 
                                 Binding="{Binding UserName.IsValid}" 
                                 Value="False">
-                                    <Setter Property="effects:LineColorEffect.LineColor" Value="{StaticResource ErrorColor}" />
+                                <Setter Property="effects:LineColorEffect.LineColor" Value="{StaticResource BlackColor}" />
                             </DataTrigger>
                         </Entry.Triggers>
                         <Entry.HeightRequest>
@@ -124,18 +123,12 @@
                         Text="Log In"
                         AutomationId="signin"
                         Style="{StaticResource SignInButtonStyle}">
-                        <Button.IsVisible>
-                            <helpers:OnCustomPlatform x:TypeArguments="x:Boolean"
-                                            Android="True"
-                                            iOS="True"/>
-                        </Button.IsVisible>
                         <Button.Margin>
                             <OnPlatform 
                                 x:TypeArguments="Thickness"
                                 iOS="0, 20, 0, 0"
                                 Android="0, 16, 0, 0"/>
                         </Button.Margin>
-                        
                     </Button>
                 </StackLayout>
             </Grid>

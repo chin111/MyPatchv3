@@ -1,0 +1,35 @@
+{
+    "EmployeeListPage.xaml" : {
+        "EmployeeList" : 
+        [
+            {  
+                "EmployeeID":"V2KX201",
+                "Name":"V2KX201"
+            }, 
+            {  
+                "EmployeeID":"V2KX202",
+                "Name":"V2KX202"
+            },
+            {  
+                "EmployeeID":"V2KX203",
+                "Name":"V2KX203"
+            },
+            {  
+                "EmployeeID":"V2KX204",
+                "Name":"V2KX204"
+            },
+            {  
+                "EmployeeID":"V2KX205",
+                "Name":"V2KX205"
+            },
+            {  
+                "EmployeeID":"V2KX206",
+                "Name":"V2KX206"
+            },
+            {  
+                "EmployeeID":"V2KX207",
+                "Name":"V2KX207"
+            }
+        ]
+    }
+}

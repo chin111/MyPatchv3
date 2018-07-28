@@ -1,7 +1,5 @@
-﻿//using MyPatchV3.UI.DataServices;
-//using MyPatchV3.UI.Models.ReportIncident;
+﻿using MyPatchV3.UI.DataServices;
 using MyPatchV3.UI.Pages;
-//using MyPatchV3.UI.Pages.SignUp;
 using MyPatchV3.UI.ViewModels;
 using MyPatchV3.UI.ViewModels.Base;
 using System;
@@ -13,7 +11,7 @@ namespace MyPatchV3.UI.Services
 {
     public class NavigationService : INavigationService
     {
-        //private readonly IAuthenticationService _authenticationService;
+        private readonly IAuthenticationService _authenticationService;
         protected readonly Dictionary<Type, Type> _mappings;
 
         protected Application CurrentApplication
@@ -24,16 +22,9 @@ namespace MyPatchV3.UI.Services
             }
         }
 
-        //public NavigationService(IAuthenticationService authenticationService)
-        //{
-        //    _authenticationService = authenticationService;
-        //    _mappings = new Dictionary<Type, Type>();
-
-        //    CreatePageViewModelMappings();
-        //    CreateMessengerSubscriptions();
-        //}
-        public NavigationService()
+        public NavigationService(IAuthenticationService authenticationService)
         {
+            _authenticationService = authenticationService;
             _mappings = new Dictionary<Type, Type>();
 
             CreatePageViewModelMappings();
@@ -42,13 +33,15 @@ namespace MyPatchV3.UI.Services
 
         public Task InitializeAsync()
         {
+            // If the user is already authenticated, go straight to Main page.
+            // Otherwise, go to Startup page.
             //if (_authenticationService.IsAuthenticated)
             //{
             //    return NavigateToAsync<MainViewModel>();
             //}
             //else
             //{
-            //    return NavigateToAsync<LoginViewModel>();
+            //    return NavigateToAsync<StartupViewModel>();
             //}
 
             return NavigateToAsync<StartupViewModel>();
@@ -181,6 +174,8 @@ namespace MyPatchV3.UI.Services
         {
             _mappings.Add(typeof(StartupViewModel), typeof(StartupPage));
             _mappings.Add(typeof(LoginViewModel), typeof(LoginPage));
+            _mappings.Add(typeof(EmployeeListViewModel), typeof(EmployeeListPage));
+            _mappings.Add(typeof(SyncViewModel), typeof(SyncPage));
             _mappings.Add(typeof(HomeViewModel), typeof(HomePage));
             _mappings.Add(typeof(MainViewModel), typeof(MainPage));
         }

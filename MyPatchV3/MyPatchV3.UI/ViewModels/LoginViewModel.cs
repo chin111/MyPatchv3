@@ -7,9 +7,10 @@ using System.Windows.Input;
 
 using Xamarin.Forms;
 
-//using MyPatchV3.UI.DataServices;
-//using MyPatchV3.UI.DataServices.Base;
+using MyPatchV3.UI.DataServices;
+using MyPatchV3.UI.DataServices.Base;
 using MyPatchV3.UI.Validations;
+using MyPatchV3.UI.Helpers;
 
 namespace MyPatchV3.UI.ViewModels
 {
@@ -20,11 +21,11 @@ namespace MyPatchV3.UI.ViewModels
         private bool _isValid;
         private bool _isEnabled;
 
-        //private readonly IAuthenticationService _authenticationService;
+        private readonly IAuthenticationService _authenticationService;
 
-        public LoginViewModel()
+        public LoginViewModel(IAuthenticationService authenticationService)
         {
-            //_authenticationService = authenticationService;
+            _authenticationService = authenticationService;
             _userName = new ValidatableObject<string>();
             _password = new ValidatableObject<string>();
 
@@ -85,8 +86,6 @@ namespace MyPatchV3.UI.ViewModels
 
         public ICommand SignInCommand => new Command(SignInAsync);
 
-        public ICommand GoToSignUpCommand => new Command(GoToSignUp);
-
         public ICommand ValidateCommand
         {
             get { return new Command(() => Enable()); }
@@ -101,7 +100,7 @@ namespace MyPatchV3.UI.ViewModels
 
             if (isValid)
             {
-                /*
+                
                 try
                 {
                     isAuthenticated = await _authenticationService.LoginAsync(UserName.Value, Password.Value);
@@ -119,24 +118,39 @@ namespace MyPatchV3.UI.ViewModels
                 {
                     Debug.WriteLine($"[SignIn] Error signing in: {ex}");
                 }
-                */
+
+                //isAuthenticated = true;
             }
             else
             {
                 IsValid = false;
+
+                bool isValidUser = _userName.Validate();
+                if (!isValidUser)
+                {
+                    await DialogService.ShowAlertAsync("Username should not be empty.", "Error", "Ok");
+                }
+                else
+                {
+                    await DialogService.ShowAlertAsync("Password should not be empty.", "Error", "Ok");
+                }
             }
 
             if (isAuthenticated)
             {
-                //await NavigationService.NavigateToAsync<MainViewModel>();
+                if (Settings.UserType == "DM")
+                {
+                    // Employer, Go to choose an employee
+                    await NavigationService.NavigateToAsync<EmployeeListViewModel>();
+                }
+                else
+                {
+                    // Employee, Go straight to Sync page
+                    await NavigationService.NavigateToAsync<SyncViewModel>();
+                }
             }
 
             IsBusy = false;
-        }
-
-        private async void GoToSignUp()
-        {
-            //await NavigationService.NavigateToAsync<SignUpViewModel>();
         }
 
         private bool Validate()

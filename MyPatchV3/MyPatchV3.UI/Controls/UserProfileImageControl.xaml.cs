@@ -52,9 +52,15 @@ namespace MyPatchV3.UI.Controls
                 BorderHexColor = borderColor
             };
 
-            Device.OnPlatform(
-                iOS: () => transformation.BorderSize = 30,
-                Default: () => transformation.BorderSize = 20);
+            switch(Device.RuntimePlatform)
+            {
+                case Xamarin.Forms.Device.iOS:
+                    transformation.BorderSize = 30;
+                    break;
+                default:
+                    transformation.BorderSize = 20;
+                    break;
+            }
 
             Photo.Transformations.Add(transformation);
         }

@@ -17,11 +17,11 @@
 
         public static implicit operator T(OnCustomPlatform<T> onPlatform)
         {
-            switch (Xamarin.Forms.Device.OS)
+            switch (Xamarin.Forms.Device.RuntimePlatform)
             {
-                case Xamarin.Forms.TargetPlatform.Android:
+                case Xamarin.Forms.Device.Android:
                     return onPlatform.Android;
-                case Xamarin.Forms.TargetPlatform.iOS:
+                case Xamarin.Forms.Device.iOS:
                     return onPlatform.iOS;
                 default:
                     return onPlatform.Other;

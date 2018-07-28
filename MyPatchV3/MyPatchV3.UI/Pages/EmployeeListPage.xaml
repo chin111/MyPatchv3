@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyPatchV3.UI.Pages.EmployeeListPage"
+             xmlns:animations="clr-namespace:MyPatchV3.UI.Animations;assembly=MyPatchV3.UI"
+             xmlns:behaviors="clr-namespace:MyPatchV3.UI.Behaviors;assembly=MyPatchV3.UI"
+             xmlns:effects="clr-namespace:MyPatchV3.UI.Effects;assembly=MyPatchV3.UI"
+             xmlns:templates="clr-namespace:MyPatchV3.UI.TemplateSelectors;assembly=MyPatchV3.UI"
+             xmlns:triggers="clr-namespace:MyPatchV3.UI.Triggers;assembly=MyPatchV3.UI"
+             NavigationPage.HasBackButton="False"
+             Title="Select Employee">
+    <ContentPage.Effects>
+        <effects:ContentPageTitleFontEffect/>
+    </ContentPage.Effects>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <templates:EmployeeDataTemplateSelector x:Key="EmployeeDataTemplateSelector" />
+
+            <animations:StoryBoard x:Key="EmployeeListAnimation"
+                                   Target="{x:Reference Items}">
+                <animations:FadeToAnimation 
+                    Opacity="1"
+                    Duration="1000" />
+            </animations:StoryBoard>
+
+            <Style x:Key="NextButtonStyle"
+                   TargetType="{x:Type Button}"
+                   BasedOn="{StaticResource ButtonStyle}">
+                <Setter Property="HeightRequest"
+                        Value="48" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource MediumSize}" />
+                <Setter Property="TextColor"
+                        Value="{StaticResource WhiteColor}" />
+                <Setter Property="BackgroundColor"
+                        Value="{StaticResource BlueColor}" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Triggers>
+        <EventTrigger Event="Appearing">
+            <triggers:BeginAnimation
+                Animation="{StaticResource EmployeeListAnimation}" />
+        </EventTrigger>
+    </ContentPage.Triggers>
+    <ContentPage.Content>
+        <Grid BackgroundColor="{StaticResource BackgroundGrayColor}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <ListView 
+                Grid.Row="0"
+                x:Name="Items"
+                CachingStrategy="RecycleElement"
+                ItemsSource="{Binding EmployeeList, Mode=OneWay}"
+                HasUnevenRows="True"
+                SeparatorVisibility="None"
+                ItemTemplate="{StaticResource EmployeeDataTemplateSelector}"
+                IsPullToRefreshEnabled="True"
+                RefreshCommand="{Binding RefreshCommand}"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                Opacity="0"
+                behaviors:ItemTappedCommandListView.ItemTappedCommand="{Binding ItemSelectCommand}">
+                <ListView.Margin>
+                    <OnPlatform x:TypeArguments="Thickness" 
+                                Android="8"
+                                WinPhone="8"/>
+                </ListView.Margin>
+            </ListView>
+            <Button 
+                Grid.Row="1"
+                x:Name="NextButton"
+                        Command="{Binding NextCommand}"
+                        Text="Next"
+                        AutomationId="next"
+                        Style="{StaticResource NextButtonStyle}">
+                <Button.Margin>
+                    <OnPlatform 
+                        x:TypeArguments="Thickness"
+                        iOS="80, 0, 80, 20"
+                        Android="72, 0, 72, 16"/>
+                </Button.Margin>
+            </Button>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

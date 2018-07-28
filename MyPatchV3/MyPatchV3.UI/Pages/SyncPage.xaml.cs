@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace MyPatchV3.UI.Pages
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class DownloadPage : ContentPage
+	public partial class SyncPage : ContentPage
 	{
-		public DownloadPage ()
+		public SyncPage ()
 		{
 			InitializeComponent ();
 		}

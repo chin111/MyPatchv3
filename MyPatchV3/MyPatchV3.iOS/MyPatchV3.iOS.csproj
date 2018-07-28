@@ -190,11 +190,11 @@
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
-    <Reference Include="UXDivers.Gorilla.SDK, Version=1.2.0.6, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\UXDivers.GorillaPlayer.SDK.1.2.0.6\lib\Xamarin.iOS10\UXDivers.Gorilla.SDK.dll</HintPath>
+    <Reference Include="UXDivers.Gorilla.SDK, Version=1.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\UXDivers.GorillaPlayer.SDK.1.2.2\lib\Xamarin.iOS10\UXDivers.Gorilla.SDK.dll</HintPath>
     </Reference>
-    <Reference Include="UXDivers.Gorilla.SDK.iOS, Version=1.2.0.6, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\UXDivers.GorillaPlayer.SDK.1.2.0.6\lib\Xamarin.iOS10\UXDivers.Gorilla.SDK.iOS.dll</HintPath>
+    <Reference Include="UXDivers.Gorilla.SDK.iOS, Version=1.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\UXDivers.GorillaPlayer.SDK.1.2.2\lib\Xamarin.iOS10\UXDivers.Gorilla.SDK.iOS.dll</HintPath>
     </Reference>
     <Reference Include="WebP.Touch, Version=1.0.6628.22311, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\WebP.Touch.1.0.8\lib\Xamarin.iOS10\WebP.Touch.dll</HintPath>
